@@ -1,0 +1,10 @@
+<h1>Sign up</h1>
+
+<form action= <%= users_path %> method="POST">
+	<input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+	<label>Email address</label>
+  <input type="text" name="email">
+  <label>Password</label>
+  <input type="text" name="password">
+  <input type="submit" value="Valider">
+</form>

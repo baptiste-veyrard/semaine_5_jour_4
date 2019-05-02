@@ -1,0 +1,52 @@
+
+<div class="card">
+  <div class="card-header">
+   <h2><center> The Super Gossip Project For Real BITCHEEEEEES </center></h2>
+ </div>
+
+
+</br></br>
+
+<h1>SALUT LES LOULOUS !</h1> 
+<p>   
+
+	<h2> 
+   <%= link_to " ====> rajoute ton gossip ici <====", new_gossip_path %></h2>
+ </div>
+<!--  <% @gossip.each do |g| %>
+ <div class="card" style="width: 18rem;">
+  <div class="card-header">
+  	
+    <%= "gossip de   #{g.user.first_name} #{g.user.last_name}" %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= link_to "#{g.title}", gossip_path(g.id) %></li>
+
+  </ul>
+</div>
+<% end %> -->
+
+</p>
+<% @gossip.each do |g| %>
+
+  <div class="row">
+    <div class="col-1">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg" class="img-circle" height="55" width="55" alt="Avatar">
+   </div>
+   <div class="col-11">
+    <div class="well">
+     <p> <%= "#{g.user.first_name} #{g.user.last_name}" %></p>
+
+     <p> comment: <span class="badge badge-primary badge-pill"> <%=g.comments.count %></span> </p>
+
+   </div>
+ 
+  <div class="row-2">
+    <div class="well">
+      <p><%= link_to "#{g.title}", gossip_path(g.id) %></p>
+ 
+    </div>
+  </div>
+  </div>
+   </div>
+<% end %>

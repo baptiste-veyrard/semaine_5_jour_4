@@ -1,0 +1,10 @@
+<br><h2><%= "Voici la page de la ville de #{@city.name}" %></h2><br>
+<% @city_users.each do |u| %>
+<h4><%= u.first_name %>
+<%= u.last_name %></h4>
+	<% u.gossips.each do |g| %>
+		<h6><%= g.title %></h6>
+		<%= g.content %><br><br>
+
+<% end %> 
+<% end %> 
