@@ -1,52 +1,35 @@
 
-<div class="card">
-  <div class="card-header">
-   <h2><center> The Super Gossip Project For Real BITCHEEEEEES </center></h2>
- </div>
-
-
-</br></br>
-
-<h1>SALUT LES LOULOUS !</h1> 
-<p>   
-
-	<h2> 
-   <%= link_to " ====> rajoute ton gossip ici <====", new_gossip_path %></h2>
- </div>
-<!--  <% @gossip.each do |g| %>
- <div class="card" style="width: 18rem;">
-  <div class="card-header">
-  	
-    <%= "gossip de   #{g.user.first_name} #{g.user.last_name}" %>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= link_to "#{g.title}", gossip_path(g.id) %></li>
-
-  </ul>
+<div class="container text-center" style="margin-top: 30px;">
+  <h1>Welcome to The Gossip Project</h1>
+  <br/>
+  <h3><%= link_to "Create a new gossip", new_gossip_path %></h3>
+  <br/>
+  <h2>Here is the list of all Gossips:</h2>
+  <br/>
 </div>
-<% end %> -->
 
-</p>
-<% @gossip.each do |g| %>
 
-  <div class="row">
-    <div class="col-1">
-     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg" class="img-circle" height="55" width="55" alt="Avatar">
-   </div>
-   <div class="col-11">
-    <div class="well">
-     <p> <%= "#{g.user.first_name} #{g.user.last_name}" %></p>
 
-     <p> comment: <span class="badge badge-primary badge-pill"> <%=g.comments.count %></span> </p>
+  <div class="container d-flex flex-wrap justify-content-center" style="max-width: 100%">
 
-   </div>
- 
-  <div class="row-2">
-    <div class="well">
-      <p><%= link_to "#{g.title}", gossip_path(g.id) %></p>
- 
+    <% @gossip.each do |gossip| %>
+
+
+
+    <div class="col-md-3" style="margin: 30px 30px 30px 30px;">
+      <div class="card" style="width: 18rem; height: auto;">
+        <img class="card-img-top" src="/Gossip.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><span style="color: red">Gossip n°<%= gossip.id%></span> : <%=gossip.title%></h5>
+          <p class="card-text">Author : <%=gossip.user.first_name%><br/>
+            Description : <%=gossip.content%></p>
+            <a href="gossips/<%= gossip.id%>" class="btn btn-primary">Know more</a>
+            <a href="<%=edit_gossip_path(gossip.id)%>" class="btn btn-primary">Edit</a>
+            <a href="<%=gossip_path(gossip.id)%>" class="btn btn-danger" data-confirm="Do you really want delete this gossip?" data-method="delete">Delete</a>
+          </div>
+        </div>
+      </div>
+
+      <%end%>
     </div>
-  </div>
-  </div>
-   </div>
-<% end %>
+

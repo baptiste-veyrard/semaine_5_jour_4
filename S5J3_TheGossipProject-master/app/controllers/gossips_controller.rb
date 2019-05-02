@@ -49,20 +49,20 @@ class GossipsController < ApplicationController
   end
 
   def destroy
-        @gossip_precis = Gossip.find(params[:id])
-        @gossip_precis.destroy
-        redirect_to action: 'index'
-        flash[:success] = "Your gossip has been deleted with success, my coño friend!"
+    @gossip_precis = Gossip.find(params[:id])
+    @gossip_precis.destroy
+    redirect_to action: 'index'
+    flash[:success] = "Your gossip has been deleted with success, my coño friend!"
   end
 
 
-private
+  private
 
-def gossip_params
+  def gossip_params
 
-  params.require(:gossip).permit(:title, :content)
+    params.require(:gossip).permit(:title, :content)
 
-end
+  end
 
   private
 
@@ -78,9 +78,14 @@ private
 
 def is_the_same_user?
   @gossip_precis = Gossip.find(params[:id])
-  unless current_user.id == @gossip_precis.user_id
-    flash[:danger] = "You cannot modify a gossip which is not yours"
-    redirect_back fallback_location: root_path
+  if logged_in?
+    unless current_user.id == @gossip_precis.user_id
+      flash[:danger] = "You cannot modify a gossip which is not yours"
+      redirect_back fallback_location: root_path
+    end
+  else
+    flash[:danger] = "You have to be logged to do this action"
+    redirect_back fallback_location:root_path
   end
 end
 
